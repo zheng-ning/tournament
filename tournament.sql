@@ -8,29 +8,18 @@
 
 CREATE DATABASE tournament ();
 
-CREATE TABLE players(
+CREATE TABLE player(
   player_id serial PRIMARY KEY,
   player_name text
 );
 
 CREATE TABLE match(
 game_id SERIAL PRIMARY KEY,
-  player_1 INTEGER FOREIGN KEY(player),
+  player_1 INTEGER,
   player_2 INTEGER,
   winner INTEGER,
-  loser INTEGER
+  FOREIGN KEY(player_1) REFERENCES player,
+  FOREIGN KEY(player_2) REFERENCES player,
+  FOREIGN KEY(winner) REFERENCES player
 
 );
--- templates to get delete correct
-CREATE TABLE match (
-first_player text,
-second_player text,
-result text
-
-);
-
-CREATE TABLE players(
-  player_id serial,
-  name text
-);
-

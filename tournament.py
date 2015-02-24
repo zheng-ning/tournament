@@ -28,7 +28,7 @@ def deletePlayers():
     """Remove all the player records from the database."""
     con = connect()
     cursor = con.cursor()
-    query = "DELETE FROM players"
+    query = "DELETE FROM player"
     cursor.execute(query)
     con.commit()
     con.close()
@@ -38,7 +38,7 @@ def countPlayers():
     """Returns the number of players currently registered."""
     con = connect()
     cursor = con.cursor()
-    query = "SELECT count(*) FROM players"
+    query = "SELECT count(*) FROM player"
     cursor.execute(query)
 
     count = cursor.fetchone()[0]
@@ -62,9 +62,9 @@ def registerPlayer(name):
 
     bleached_name = bleach.clean(name, strip=True)
 
-    query = ("insert into players (player_name) values (%s)", (name,))
+    query = ("insert into player (player_name) values (%s)", (name,))
 
-    cursor.execute("insert into players (player_name) values (%s)", (bleached_name,))
+    cursor.execute("insert into player (player_name) values (%s)", (bleached_name,))
     # cursor.execute(query)
 
     con.commit()
@@ -86,6 +86,14 @@ def playerStandings():
     """
       # create a view of matchs and plaeyers that shows the number of wins
       # create view that shows the total matches?
+
+
+
+    # SELECT p.player_id, p.player_name, m.winner
+    # FROM player p
+    # INNER JOIN match m
+    # on p.player_id = m.winner;
+
 
 def reportMatch(winner, loser):
     """Records the outcome of a single match between two players.
