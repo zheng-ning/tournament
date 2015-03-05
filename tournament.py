@@ -38,7 +38,7 @@ def countPlayers():
     """Returns the number of players currently registered."""
     con = connect()
     cursor = con.cursor()
-    query = "SELECT count(*) FROM player"
+    query = "SELECT COUNT(*) FROM player"
     cursor.execute(query)
 
     count = cursor.fetchone()[0]
@@ -62,10 +62,7 @@ def registerPlayer(name):
 
     bleached_name = bleach.clean(name, strip=True)
 
-    query = ("insert into player (player_name) values (%s)", (name,))
-
     cursor.execute("insert into player (player_name) values (%s)", (bleached_name,))
-    # cursor.execute(query)
 
     con.commit()
     con.close()
@@ -84,15 +81,15 @@ def playerStandings():
         wins: the number of matches the player has won
         matches: the number of matches the player has played
     """
-      # create a view of matchs and plaeyers that shows the number of wins
-      # create view that shows the total matches?
+    con = connect()
+    cursor = con.cursor()
+    query = ("SELECT * FROM standings;")
+    cursor.execute(query)
 
+    results = cursor.fetchall()
 
-
-    # SELECT p.player_id, p.player_name, m.winner
-    # FROM player p
-    # INNER JOIN match m
-    # on p.player_id = m.winner;
+    con.close()
+    return results
 
 
 def reportMatch(winner, loser):
@@ -102,7 +99,15 @@ def reportMatch(winner, loser):
       winner:  the id number of the player who won
       loser:  the id number of the player who lost
     """
- 
+    con = connect()
+    cursor = con.cursor()
+
+    query = ("INSERT INTO match (winner, loser) VALUES (%s, %s)", (winner, loser,))
+    cursor.execute("INSERT INTO match (winner, loser) VALUES (%s, %s)", (winner, loser,))
+    con.commit()
+
+    con.close()
+
  
 def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
