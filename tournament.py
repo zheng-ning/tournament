@@ -102,7 +102,6 @@ def reportMatch(winner, loser):
     con = connect()
     cursor = con.cursor()
 
-    query = ("INSERT INTO match (winner, loser) VALUES (%s, %s)", (winner, loser,))
     cursor.execute("INSERT INTO match (winner, loser) VALUES (%s, %s)", (winner, loser,))
     con.commit()
 
@@ -125,4 +124,19 @@ def swissPairings():
         name2: the second player's name
     """
 
+    con = connect()
+    cursor = con.cursor()
+
+    cursor.execute("select * from standings")
+    results = cursor.fetchall()
+    mylist = []
+    count = len(results)
+
+    for x in range(0, count - 1, 2):
+        test = (results[x][0], results[x][1], results[x + 1][0], results[x + 1][1])
+        mylist.append(test)
+
+    con.close()
+
+    return mylist
 

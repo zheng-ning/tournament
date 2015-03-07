@@ -7,19 +7,21 @@
 -- these lines here.
 
 CREATE DATABASE tournament;
+DROP VIEW standings CASCADE;
 
-CREATE TABLE player(
+CREATE TABLE IF NOT EXISTS player(
   player_id serial PRIMARY KEY,
   player_name text
 );
 
-CREATE TABLE match (
+CREATE TABLE IF NOT EXISTS match (
   match_id serial PRIMARY KEY,
   winner INTEGER,
   loser INTEGER,
   FOREIGN KEY(winner) REFERENCES player(player_id),
   FOREIGN KEY(loser) REFERENCES player(player_id)
 );
+
 
 CREATE VIEW standings AS
 SELECT p.player_id as player_id, p.player_name,
@@ -28,3 +30,7 @@ SELECT p.player_id as player_id, p.player_name,
 FROM player p
 GROUP BY p.player_id
 ORDER BY won DESC;
+
+
+create table if NOT EXISTS test();
+create view if not exists blah();
