@@ -6,15 +6,28 @@
 -- You can write comments in this file by starting them with two dashes, like
 -- these lines here.
 
-CREATE DATABASE tournament;
-DROP VIEW standings CASCADE;
+-- Drop tournament database if it exists
+DROP DATABASE IF EXISTS tournament;
 
-CREATE TABLE IF NOT EXISTS player(
+-- Create Database 'Tournament'
+CREATE DATABASE tournament;
+
+-- Connect to the tournament database
+\connect tournament
+
+-- Drop all tables and views if they exist
+DROP TABLE IF EXISTS player CASCADE;
+DROP tABLE IF EXISTS match CASCADE;
+DROP VIEW IF EXISTS standings CASCADE;
+
+-- Creates player table
+CREATE TABLE player(
   player_id serial PRIMARY KEY,
   player_name text
 );
 
-CREATE TABLE IF NOT EXISTS match (
+-- Creates match table with FK to player
+CREATE TABLE match (
   match_id serial PRIMARY KEY,
   winner INTEGER,
   loser INTEGER,
@@ -22,7 +35,7 @@ CREATE TABLE IF NOT EXISTS match (
   FOREIGN KEY(loser) REFERENCES player(player_id)
 );
 
-
+-- Creates a view of matches played sorted by won count
 CREATE VIEW standings AS
 SELECT p.player_id as player_id, p.player_name,
 (SELECT count(*) FROM match WHERE match.winner = p.player_id) as won,
@@ -30,7 +43,3 @@ SELECT p.player_id as player_id, p.player_name,
 FROM player p
 GROUP BY p.player_id
 ORDER BY won DESC;
-
-
-create table if NOT EXISTS test();
-create view if not exists blah();
