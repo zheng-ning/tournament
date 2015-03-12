@@ -1,15 +1,16 @@
 # Tournament Results
-https://www.udacity.com/course/viewer#!/c-ud197-nd/
+https://www.udacity.com/course/viewer#!/c-ud197-nd/  
 Udacity Full Stack developer project 2
 
-## Project Introduction
+## Project Specification
 
 Develop a database schema to store details of a games matches between players.   
 Then write a Python module to rank the players and pair them up in matches in a tournament.
 
 ## Files 
 
-**tournament.py**    
+**tournament.py**  
+
 Contains the implementation for the Swiss tournament  
 
 **tournament.sql**  
@@ -30,7 +31,7 @@ The latest vagrant build for the Udacity tournament project. (In project notes)
   1. Open Terminal or cmd and browse to the vagrant folder
   2. Type `vagrant up`
 2. SSH in to the vagrant VM
-  1. in the same terminal type `vagrant ssh`
+  1. In the same terminal type `vagrant ssh`
 3. Change to the correct folder
   1. Type `cd /vagrant/tournament`
 4. Open PSQL and run the tournament.sql 
