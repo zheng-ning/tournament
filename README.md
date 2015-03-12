@@ -1,26 +1,28 @@
-# tournament
+# Tournament Results
 https://www.udacity.com/course/viewer#!/c-ud197-nd/
 Udacity Full Stack developer project 2
 
-intro
-what project is
+## Project Introduction
+
+Develop a database schema to store details of a games matches between players.   
+Then write a Python module to rank the players and pair them up in matches in a tournament.
 
 ## Files 
 
-###### tournament.py
-Contains the implementation for the Swiss tournament
--- DESCRIBE METHODS?
+**tournament.py**    
+Contains the implementation for the Swiss tournament  
 
-###### tournament.sql
-Contains the SQL queries to create the database, tables and views 
+**tournament.sql**  
 
-###### tournament_test.py
+Contains the SQL queries to create the database, tables and views   
 
-Contains the test cases for tournament.py
+**tournament_test.py**  
+
+Contains the test cases for tournament.py  
 
 ## Prerequisites 
 
-The latest vagrant build for the Udacity tournament project.
+The latest vagrant build for the Udacity tournament project. (In project notes)
 
 ## Instructions
 

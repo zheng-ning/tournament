@@ -11,8 +11,6 @@ def connect():
     return psycopg2.connect("dbname=tournament")
 
 
-
-
 def deleteMatches():
     """Remove all the match records from the database."""
     con = connect()
@@ -40,10 +38,8 @@ def countPlayers():
     cursor = con.cursor()
     query = "SELECT COUNT(*) FROM player"
     cursor.execute(query)
-
     count = cursor.fetchone()[0]
     con.close()
-
     return count
 
 
@@ -59,11 +55,8 @@ def registerPlayer(name):
 
     con = connect()
     cursor = con.cursor()
-
     bleached_name = bleach.clean(name, strip=True)
-
     cursor.execute("insert into player (player_name) values (%s)", (bleached_name,))
-
     con.commit()
     con.close()
 
@@ -85,9 +78,7 @@ def playerStandings():
     cursor = con.cursor()
     query = ("SELECT * FROM standings;")
     cursor.execute(query)
-
     results = cursor.fetchall()
-
     con.close()
     return results
 
@@ -101,10 +92,8 @@ def reportMatch(winner, loser):
     """
     con = connect()
     cursor = con.cursor()
-
     cursor.execute("INSERT INTO match (winner, loser) VALUES (%s, %s)", (winner, loser,))
     con.commit()
-
     con.close()
 
  
@@ -126,17 +115,15 @@ def swissPairings():
 
     con = connect()
     cursor = con.cursor()
-
     cursor.execute("select * from standings")
     results = cursor.fetchall()
-    mylist = []
+    pairings = []
     count = len(results)
 
     for x in range(0, count - 1, 2):
-        test = (results[x][0], results[x][1], results[x + 1][0], results[x + 1][1])
-        mylist.append(test)
+        paired_list = (results[x][0], results[x][1], results[x + 1][0], results[x + 1][1])
+        pairings.append(paired_list)
 
     con.close()
-
-    return mylist
+    return pairings
 
