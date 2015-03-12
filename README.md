@@ -41,7 +41,7 @@ The latest vagrant build for the Udacity tournament project.
 ## Expected Outcome
 
 Success!  All tests pass!
-vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$ python tournament_test.py 
+vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$ python tournament_test.py
 1. Old matches can be deleted.
 2. Player records can be deleted.
 3. After deleting, countPlayers() returns zero.
