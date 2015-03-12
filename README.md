@@ -40,7 +40,7 @@ The latest vagrant build for the Udacity tournament project.
 
 ## Expected Outcome
 
-`Success!  All tests pass!
+Success!  All tests pass!
 vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$ python tournament_test.py 
 1. Old matches can be deleted.
 2. Player records can be deleted.
@@ -50,4 +50,4 @@ vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$ python tournament_test.py
 6. Newly registered players appear in the standings with no matches.
 7. After a match, players have updated standings.
 8. After one match, players with one win are paired.
-Success!  All tests pass!`
+Success!  All tests pass!
