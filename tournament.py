@@ -78,7 +78,8 @@ def playerStandings():
     query = "SELECT * FROM standings;"
     cursor.execute(query)
     results = cursor.fetchall()
-
+    # If the top two results have more than 0 wins AND are equal then reorder them
+    # by total wins divided by total games played
     if (results[0][2] != 0) and (results[0][2] == results[1][2]):
         query = "SELECT player_id, player_name, won, played " \
                 "FROM standings ORDER BY (cast(won AS DECIMAL)/played)  DESC;"
