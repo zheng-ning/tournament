@@ -21,7 +21,6 @@ def deleteMatches():
     con.close()
 
 
-
 def deletePlayers():
     """Remove all the player records from the database."""
     con = connect()
@@ -76,10 +75,17 @@ def playerStandings():
     """
     con = connect()
     cursor = con.cursor()
-    query = ("SELECT * FROM standings;")
+    query = "SELECT * FROM standings;"
     cursor.execute(query)
     results = cursor.fetchall()
+
+    if (results[0][2] != 0) and (results[0][2] == results[1][2]):
+        query = "SELECT player_id, player_name, won, played " \
+                "FROM standings ORDER BY (cast(won AS DECIMAL)/played)  DESC;"
+        cursor.execute(query)
+        results = cursor.fetchall()
     con.close()
+
     return results
 
 
@@ -96,7 +102,7 @@ def reportMatch(winner, loser):
     con.commit()
     con.close()
 
- 
+
 def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
   
@@ -115,7 +121,8 @@ def swissPairings():
 
     con = connect()
     cursor = con.cursor()
-    cursor.execute("select * from standings")
+    query = "SELECT * FROM standings"
+    cursor.execute(query)
     results = cursor.fetchall()
     pairings = []
     count = len(results)
