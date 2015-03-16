@@ -54,3 +54,8 @@ vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$ python tournament_test.py
 7. After a match, players have updated standings.  
 8. After one match, players with one win are paired.  
 Success!  All tests pass!  
+
+## Extra Credit
+
+If the top two players have the same won match count, and have won more than 0 games, then 
+the standings is ordered by total number of wins by games played in descending order.
